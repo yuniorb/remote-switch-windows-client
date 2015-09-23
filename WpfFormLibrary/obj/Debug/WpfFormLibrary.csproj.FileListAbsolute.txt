@@ -1,0 +1,14 @@
+C:\Users\yuniorbv\Desktop\remote-switch-windows-client\WpfFormLibrary\bin\Debug\WpfFormLibrary.dll
+C:\Users\yuniorbv\Desktop\remote-switch-windows-client\WpfFormLibrary\bin\Debug\WpfFormLibrary.pdb
+C:\Users\yuniorbv\Desktop\remote-switch-windows-client\WpfFormLibrary\obj\Debug\WpfFormLibrary.csprojResolveAssemblyReference.cache
+C:\Users\yuniorbv\Desktop\remote-switch-windows-client\WpfFormLibrary\obj\Debug\IntroForm.baml
+C:\Users\yuniorbv\Desktop\remote-switch-windows-client\WpfFormLibrary\obj\Debug\IntroForm.g.cs
+C:\Users\yuniorbv\Desktop\remote-switch-windows-client\WpfFormLibrary\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\yuniorbv\Desktop\remote-switch-windows-client\WpfFormLibrary\obj\Debug\WpfFormLibrary_MarkupCompile.cache
+C:\Users\yuniorbv\Desktop\remote-switch-windows-client\WpfFormLibrary\obj\Debug\WpfFormLibrary_MarkupCompile.lref
+C:\Users\yuniorbv\Desktop\remote-switch-windows-client\WpfFormLibrary\obj\Debug\Themes\Generic.baml
+C:\Users\yuniorbv\Desktop\remote-switch-windows-client\WpfFormLibrary\obj\Debug\WpfFormLibrary.g.resources
+C:\Users\yuniorbv\Desktop\remote-switch-windows-client\WpfFormLibrary\obj\Debug\WpfFormLibrary.Properties.Resources.resources
+C:\Users\yuniorbv\Desktop\remote-switch-windows-client\WpfFormLibrary\obj\Debug\WpfFormLibrary.csproj.GenerateResource.Cache
+C:\Users\yuniorbv\Desktop\remote-switch-windows-client\WpfFormLibrary\obj\Debug\WpfFormLibrary.dll
+C:\Users\yuniorbv\Desktop\remote-switch-windows-client\WpfFormLibrary\obj\Debug\WpfFormLibrary.pdb

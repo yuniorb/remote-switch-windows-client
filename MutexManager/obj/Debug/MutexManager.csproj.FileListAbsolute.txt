@@ -1,0 +1,5 @@
+C:\Users\yuniorbv\Desktop\remote-switch-windows-client\MutexManager\bin\Debug\MutexManager.dll
+C:\Users\yuniorbv\Desktop\remote-switch-windows-client\MutexManager\bin\Debug\MutexManager.pdb
+C:\Users\yuniorbv\Desktop\remote-switch-windows-client\MutexManager\obj\Debug\MutexManager.csprojResolveAssemblyReference.cache
+C:\Users\yuniorbv\Desktop\remote-switch-windows-client\MutexManager\obj\Debug\MutexManager.dll
+C:\Users\yuniorbv\Desktop\remote-switch-windows-client\MutexManager\obj\Debug\MutexManager.pdb

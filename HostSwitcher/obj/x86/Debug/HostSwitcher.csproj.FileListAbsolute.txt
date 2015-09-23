@@ -1,0 +1,13 @@
+C:\Users\yuniorbv\Desktop\remote-switch-windows-client\HostSwitcher\bin\Debug\route.ico
+C:\Users\yuniorbv\Desktop\remote-switch-windows-client\HostSwitcher\bin\Debug\HostSwitcher.exe
+C:\Users\yuniorbv\Desktop\remote-switch-windows-client\HostSwitcher\bin\Debug\HostSwitcher.pdb
+C:\Users\yuniorbv\Desktop\remote-switch-windows-client\HostSwitcher\bin\Debug\MutexManager.dll
+C:\Users\yuniorbv\Desktop\remote-switch-windows-client\HostSwitcher\bin\Debug\WpfFormLibrary.dll
+C:\Users\yuniorbv\Desktop\remote-switch-windows-client\HostSwitcher\bin\Debug\MutexManager.pdb
+C:\Users\yuniorbv\Desktop\remote-switch-windows-client\HostSwitcher\bin\Debug\WpfFormLibrary.pdb
+C:\Users\yuniorbv\Desktop\remote-switch-windows-client\HostSwitcher\obj\x86\Debug\HostSwitcher.csprojResolveAssemblyReference.cache
+C:\Users\yuniorbv\Desktop\remote-switch-windows-client\HostSwitcher\obj\x86\Debug\HostSwitcher.DetailsForm.resources
+C:\Users\yuniorbv\Desktop\remote-switch-windows-client\HostSwitcher\obj\x86\Debug\HostSwitcher.Properties.Resources.resources
+C:\Users\yuniorbv\Desktop\remote-switch-windows-client\HostSwitcher\obj\x86\Debug\HostSwitcher.csproj.GenerateResource.Cache
+C:\Users\yuniorbv\Desktop\remote-switch-windows-client\HostSwitcher\obj\x86\Debug\HostSwitcher.exe
+C:\Users\yuniorbv\Desktop\remote-switch-windows-client\HostSwitcher\obj\x86\Debug\HostSwitcher.pdb
