@@ -8,8 +8,8 @@
     <ProjectGuid>{F6E5F498-BC1A-46F7-8DDA-3C5D3282357F}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>HostSwitcher</RootNamespace>
-    <AssemblyName>HostSwitcher</AssemblyName>
+    <RootNamespace>RemoteSwitchClient</RootNamespace>
+    <AssemblyName>RemoteSwitchClient</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
@@ -35,7 +35,8 @@
   </PropertyGroup>
   <PropertyGroup />
   <PropertyGroup>
-    <ApplicationIcon>route64x64.ico</ApplicationIcon>
+    <ApplicationIcon>
+    </ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EngineIoClientDotNet, Version=0.9.21.0, Culture=neutral, processorArchitecture=MSIL">
@@ -53,6 +54,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
@@ -74,19 +76,10 @@
     <Compile Include="CustomApplicationContext.cs" />
     <Compile Include="SwitchEvent.cs" />
     <Compile Include="SwitchManager.cs" />
-    <Compile Include="DetailsForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="DetailsForm.designer.cs">
-      <DependentUpon>DetailsForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SortableBindingList.cs" />
     <Compile Include="SwitchClient.cs" />
-    <EmbeddedResource Include="DetailsForm.resx">
-      <DependentUpon>DetailsForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -97,6 +90,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="App.config" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -109,19 +103,18 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\signal-green.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\signal-red.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\signal-yellow.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="route.ico">
+    <Content Include="Resources\RedButton.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="route64x64.ico" />
+    <Content Include="Resources\GreenButton.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\OrangeButton.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\GreenButton.png" />
+    <Content Include="Resources\OrangeButton.png" />
+    <Content Include="Resources\RedButton.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MutexManager\MutexManager.csproj">
@@ -129,7 +122,7 @@
       <Name>MutexManager</Name>
     </ProjectReference>
     <ProjectReference Include="..\WpfFormLibrary\WpfFormLibrary.csproj">
-      <Project>{F4B7E37D-CD21-493D-AD37-CA7263DB2F54}</Project>
+      <Project>{f4b7e37d-cd21-493d-ad37-ca7263db2f54}</Project>
       <Name>WpfFormLibrary</Name>
     </ProjectReference>
   </ItemGroup>

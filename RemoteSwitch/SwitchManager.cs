@@ -23,16 +23,17 @@
  *
  * ***** END LICENSE BLOCK *****
  */
- 
-namespace RemoteSwitch
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Windows.Forms;
-    using RemoteSwitchClient;
-    using RemoteSwitchClient.Properties;
 
+using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Drawing;
+using System.Linq;
+using System.Windows.Forms;
+using RemoteSwitchClient.Properties;
+
+namespace RemoteSwitchClient
+{
     public class SwitchManager
     {
         private const int MaxTooltipLength = 63; // framework constraint
@@ -44,8 +45,15 @@ namespace RemoteSwitch
         public SwitchManager(NotifyIcon notifyIcon)
         {
             this.notifyIcon = notifyIcon;
-            //TODO let the user set the server url
-            switchClient = new SwitchClient("http://localhost");
+            var configuredUrl = ConfigurationManager.AppSettings["SwitchServerUrl"];
+            Uri url;
+            if (!Uri.TryCreate(configuredUrl, UriKind.Absolute, out url))
+            {
+                // TODO translate
+                throw new ArgumentException(
+                    "An error occurred while trying to retrieve the switch server url. Make sure the switch server url is set and it is correct");
+            }
+            switchClient = new SwitchClient(url);
             switchClient.RegisterListener(HandleSwitchEvent);
         }
 
@@ -67,9 +75,7 @@ namespace RemoteSwitch
 
         public bool IsDecorated { get; private set; }
         public int EnabledColumnNumber = 4;
-
-        # region context menu creation
-
+        
         public void BuildContextMenu(ContextMenuStrip contextMenuStrip)
         {
             contextMenuStrip.Items.Clear();
@@ -78,11 +84,18 @@ namespace RemoteSwitch
                 .Select(CreateSubMenu).ToArray());
         }
 
+        public ToolStripMenuItem ToolStripMenuItemWithHandler(string displayText, EventHandler eventHandler)
+        {
+            var item = new ToolStripMenuItem(displayText);
+            if (eventHandler != null) { item.Click += eventHandler; }
+            return item;
+        }
+
         private ToolStripMenuItem CreateSubMenu(SwitchEvent switchEvent)
         {
             var menuItem = new ToolStripMenuItem(switchEvent.Name)
             {
-                Image = switchEvent.Status ? Resources.signal_green : Resources.signal_red,
+                Image = switchEvent.Status ? Resources.SquareGreenButton : Resources.SquareRedButton,
                 // TODO : translate in resource file
                 ToolTipText = switchEvent.Status ? "ON" : "OFF"
             };
@@ -99,61 +112,37 @@ namespace RemoteSwitch
 
             return item;
         }
-        # endregion context menu creation
 
-        # region hosts file analysis
-        
-        /// <summary>
-        /// Builds the server associations into a dictionary.
-        /// </summary>
-        public void InitializeSwitches()
-        {   
-            SetNotifyIconToolTip();
+        private void ChangeTrayIcon(int onSwitches, int totalSwitches)
+        {
+            Icon status;
+            if (onSwitches == totalSwitches)
+            {
+                status = Resources.GreenButton;
+            }
+            else if (onSwitches > 0 && onSwitches < totalSwitches)
+            {
+                status = Resources.OrangeButton;
+            }
+            else
+            {
+                status = Resources.RedButton;
+            }
+
+            this.notifyIcon.Icon = status;
         }
 
         private void SetNotifyIconToolTip()
         {
             int switchesOn = switchEvents.Count(x => x.Status);
 
+            //TODO: translate
             string toolTipText = $"{switchesOn} of {switchEvents.Count} switches are on.";
 
             notifyIcon.Text = toolTipText.Length >= MaxTooltipLength ?
                 toolTipText.Substring(0, MaxTooltipLength - 3) + "..." : toolTipText;
-        }
-        
-        # endregion hosts file analysis
 
-        # region details form support
-        
-        public static readonly string EnabledLabel = "enabled";
-        public static readonly string DisabledLabel = "disabled";
-
-        public bool IsEnabled(string cellValue)
-        {
-            return EnabledLabel.Equals(cellValue);
-        }
-        
-        # endregion details form support
-        
-        # region event handlers
-        
-        private ToolStripMenuItem ToolStripMenuItemWithHandler(
-            string displayText, int enabledCount, int disabledCount, EventHandler eventHandler)
-        {
-            var item = new ToolStripMenuItem(displayText);
-            if (eventHandler != null) { item.Click += eventHandler; }
-            return item;
-        }
-        public ToolStripMenuItem ToolStripMenuItemWithHandler(string displayText, EventHandler eventHandler)
-        {
-            return ToolStripMenuItemWithHandler(displayText, 0, 0, eventHandler);
-        }
-
-        #endregion event handlers
-
-        public void GenerateHostsDetails(DataGridView hostsDataGridView)
-        {
-            //TODO implement
+            ChangeTrayIcon(switchesOn, switchEvents.Count);
         }
     }
 }

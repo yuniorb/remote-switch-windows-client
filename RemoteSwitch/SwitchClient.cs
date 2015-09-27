@@ -6,12 +6,12 @@
 
     public class SwitchClient
     {
-        private readonly string serverUrl;
+        private readonly Uri serverUrl;
         private readonly Socket socket;
         private const string SwitchEvent = "switch";
         private Action<SwitchEvent> listener;
 
-        public SwitchClient(string serverUrl)
+        public SwitchClient(Uri serverUrl)
         {
             this.serverUrl = serverUrl;
             socket = IO.Socket(serverUrl);
@@ -39,12 +39,11 @@
             Console.WriteLine(@"Received switch event:" + data);
             var cast = (JObject) data;
             var evt = GetSwitchEvent(cast);
-            listener.Invoke(evt);
+            listener?.Invoke(evt);
         }
 
         private SwitchEvent GetSwitchEvent(JObject data)
         {
-            // TODO find out how to extract props from data.
             return new SwitchEvent()
             {
                 Id = data["id"].Value<string>(),

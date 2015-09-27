@@ -1,16 +1,14 @@
-﻿namespace RemoteSwitch
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Reflection;
+
+namespace RemoteSwitchClient
 {
-
-    using System;
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.Linq;
-    using System.Reflection;
-
     // This class from Rhys Jones answer
     // on http://stackoverflow.com/questions/1699642/how-to-sort-databound-datagridview-column
-
     public class SortableBindingList<T> : BindingList<T>
     {
         private ArrayList sortedList;
@@ -66,16 +64,10 @@
                 return FindCore(prop, key);
         }
 
-        protected override bool SupportsSortingCore
-        {
-            get { return true; }
-        }
+        protected override bool SupportsSortingCore => true;
 
 
-        protected override bool IsSortedCore
-        {
-            get { return isSortedValue; }
-        }
+        protected override bool IsSortedCore => isSortedValue;
 
         ListSortDirection sortDirectionValue;
         PropertyDescriptor sortPropertyValue;
@@ -162,15 +154,9 @@
         {
             RemoveSortCore();
         }
-        protected override PropertyDescriptor SortPropertyCore
-        {
-            get { return sortPropertyValue; }
-        }
 
-        protected override ListSortDirection SortDirectionCore
-        {
-            get { return sortDirectionValue; }
-        }
+        protected override PropertyDescriptor SortPropertyCore => sortPropertyValue;
 
+        protected override ListSortDirection SortDirectionCore => sortDirectionValue;
     }
 }

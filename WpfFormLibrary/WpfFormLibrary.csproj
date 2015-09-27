@@ -46,14 +46,14 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IntroForm.xaml.cs">
-      <DependentUpon>IntroForm.xaml</DependentUpon>
+    <Compile Include="AboutHelpForm.xaml.cs">
+      <DependentUpon>AboutHelpForm.xaml</DependentUpon>
     </Compile>
     <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="IntroForm.xaml">
+    <Page Include="AboutHelpForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -83,10 +83,10 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="ContextMenuExample.png" />
+    <Resource Include="route32x32.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="route32x32.ico" />
+    <Resource Include="help.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

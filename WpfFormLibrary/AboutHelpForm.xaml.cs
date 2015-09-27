@@ -18,9 +18,9 @@ namespace WpfFormLibrary
     /// <summary>
     /// Interaction logic for WpfForm1.xaml
     /// </summary>
-    public partial class IntroForm : Window
+    public partial class AboutHelpForm : Window
     {
-        public IntroForm()
+        public AboutHelpForm()
         {
             InitializeComponent();
         }

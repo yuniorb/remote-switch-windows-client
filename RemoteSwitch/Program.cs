@@ -24,12 +24,12 @@
  * ***** END LICENSE BLOCK *****
  */
 
-namespace RemoteSwitch
-{
-    using System;
-    using System.Windows.Forms;
-    using MutexManager;
+using System;
+using System.Windows.Forms;
+using MutexManager;
 
+namespace RemoteSwitchClient
+{
     /// <summary>
     /// Framework for restricting app to a single instance and for running as a tray app.
     /// </summary>

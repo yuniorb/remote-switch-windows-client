@@ -1,22 +1,4 @@
-﻿using System;
-using System.Drawing;
-using System.Windows.Forms;
-using System.Windows.Forms.Integration;
-using System.Reflection;
-
-/*
- * ==============================================================
- * @ID       $Id: MainForm.cs 971 2010-09-30 16:09:30Z ww $
- * @created  2008-07-31
- * ==============================================================
- *
- * The official license for this file is shown next.
- * Unofficially, consider this e-postcardware as well:
- * if you find this module useful, let us know via e-mail, along with
- * where in the world you are and (if applicable) your website address.
- */
-
-/* ***** BEGIN LICENSE BLOCK *****
+﻿/* ***** BEGIN LICENSE BLOCK *****
  * Version: MIT License
  *
  * Copyright (c) 2010 Michael Sorens http://www.simple-talk.com/author/michael-sorens/
@@ -42,9 +24,14 @@ using System.Reflection;
  * ***** END LICENSE BLOCK *****
  */
 
-namespace RemoteSwitch
-{
+using System;
+using System.Reflection;
+using System.Windows.Forms;
+using System.Windows.Forms.Integration;
+using RemoteSwitchClient.Properties;
 
+namespace RemoteSwitchClient
+{
     /// <summary>
     /// Framework for running application as a tray app.
     /// </summary>
@@ -55,8 +42,9 @@ namespace RemoteSwitch
     public class CustomApplicationContext : ApplicationContext
     {
         // Icon graphic from http://prothemedesign.com/circular-icons/
-        private static readonly string IconFileName = "route.ico";
-        private static readonly string DefaultTooltip = "Route HOST entries via context menu";
+
+        //TODO: resorce file translation
+        private static readonly string DefaultTooltip = "Loading switches";
         private readonly SwitchManager switchManager;
 
         /// <summary>
@@ -66,50 +54,32 @@ namespace RemoteSwitch
 		{
 			InitializeContext();
             switchManager = new SwitchManager(notifyIcon);
-            switchManager.InitializeSwitches();
-            if (!switchManager.IsDecorated) { ShowIntroForm(); }
 		}
 
         private void ContextMenuStrip_Opening(object sender, System.ComponentModel.CancelEventArgs e)
         {
             e.Cancel = false;
-            switchManager.InitializeSwitches();
             switchManager.BuildContextMenu(notifyIcon.ContextMenuStrip);
             notifyIcon.ContextMenuStrip.Items.Add(new ToolStripSeparator());
-            notifyIcon.ContextMenuStrip.Items.Add(switchManager.ToolStripMenuItemWithHandler("Show &Details", showDetailsItem_Click));
             notifyIcon.ContextMenuStrip.Items.Add(switchManager.ToolStripMenuItemWithHandler("&Help/About", showHelpItem_Click));
             notifyIcon.ContextMenuStrip.Items.Add(new ToolStripSeparator());
             notifyIcon.ContextMenuStrip.Items.Add(switchManager.ToolStripMenuItemWithHandler("&Exit", exitItem_Click));
         }
 
         # region the child forms
-
-        private DetailsForm detailsForm;
+        
         private System.Windows.Window introForm;
 
         private void ShowIntroForm()
         {
             if (introForm == null)
             {
-                introForm = new WpfFormLibrary.IntroForm();
+                introForm = new WpfFormLibrary.AboutHelpForm();
                 introForm.Closed += mainForm_Closed; // avoid reshowing a disposed form
                 ElementHost.EnableModelessKeyboardInterop(introForm);
                 introForm.Show();
             }
             else { introForm.Activate(); }
-        }
-
-        private void ShowDetailsForm()
-        {
-            if (detailsForm == null)
-            {
-                // TODO: update details form with the switch information
-                throw new NotImplementedException("Under construction.");
-;                //detailsForm = new DetailsForm {switchManager = switchManager};
-                detailsForm.Closed += detailsForm_Closed; // avoid reshowing a disposed form
-                detailsForm.Show();
-            }
-            else { detailsForm.Activate(); }
         }
 
         private void notifyIcon_DoubleClick(object sender, EventArgs e) { ShowIntroForm();    }
@@ -126,10 +96,7 @@ namespace RemoteSwitch
 
         // attach to context menu items
         private void showHelpItem_Click(object sender, EventArgs e)     { ShowIntroForm();    }
-        private void showDetailsItem_Click(object sender, EventArgs e)  { ShowDetailsForm();  }
-
-        // null out the forms so we know to create a new one.
-        private void detailsForm_Closed(object sender, EventArgs e)     { detailsForm = null; }
+        
         private void mainForm_Closed(object sender, EventArgs e)        { introForm = null;   }
 
         # endregion the child forms
@@ -145,7 +112,7 @@ namespace RemoteSwitch
             notifyIcon = new NotifyIcon(components)
                              {
                                  ContextMenuStrip = new ContextMenuStrip(),
-                                 Icon = new Icon(IconFileName),
+                                 Icon = Resources.OrangeButton,
                                  Text = DefaultTooltip,
                                  Visible = true
                              };
@@ -180,7 +147,6 @@ namespace RemoteSwitch
         {
             // before we exit, let forms clean themselves up.
             introForm?.Close();
-            detailsForm?.Close();
 
             notifyIcon.Visible = false; // should remove lingering tray icon
             base.ExitThreadCore();
